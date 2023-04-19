@@ -1,12 +1,12 @@
-import React from 'react';
-import { AwesomeLink } from '../components/AwesomeLink';
-import { gql, useQuery } from '@apollo/client';
-import type { Link } from '.prisma/client';
+import React from "react";
+import { AwesomeLink } from "../components/AwesomeLink";
+import { gql, useQuery } from "@apollo/client";
+import type { Link } from ".prisma/client";
 
 const FavoritesQuery = gql`
   query {
     favorites {
-      bookmarks{
+      bookmarks {
         title
         id
         url
@@ -31,7 +31,7 @@ const Favorites = () => {
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {data.favorites.bookmarks.length === 0 ? (
             <p className="text-2xl font-medium">
-              You haven't bookmarked any links yet 👀
+              {`You haven't bookmarked any links yet 👀`}
             </p>
           ) : (
             data.favorites.bookmarks.map((link: Link) => (

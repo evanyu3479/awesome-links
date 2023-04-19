@@ -29,7 +29,7 @@ const AllLinksQuery = gql`
 `;
 
 function Home() {
-  const { user } = useUser()
+  const { user } = useUser();
   const { data, loading, error, fetchMore } = useQuery(AllLinksQuery, {
     variables: { first: 3 },
   });
@@ -37,8 +37,11 @@ function Home() {
   if (!user) {
     return (
       <div className="flex items-center justify-center">
-        To view the awesome links you need to{' '}
-        <Link href="/api/auth/login" className=" block bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+        To view the awesome links you need to{" "}
+        <Link
+          href="/api/auth/login"
+          className=" block bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+        >
           Login
         </Link>
       </div>
@@ -59,7 +62,7 @@ function Home() {
       <div className="container mx-auto max-w-5xl my-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {data?.links.edges.map(({ node }: { node: Node }) => (
-            <Link href={`/link/${node.id}`}>
+            <Link href={`/link/${node.id}`} key={node.id}>
               <AwesomeLink
                 key={node.id}
                 title={node.title}
@@ -92,7 +95,7 @@ function Home() {
           </button>
         ) : (
           <p className="my-10 text-center font-medium">
-            You've reached the end!{" "}
+            {"You've reached the end!"}
           </p>
         )}
       </div>
